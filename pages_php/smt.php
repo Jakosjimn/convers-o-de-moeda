@@ -8,39 +8,30 @@ if ($money === null || $money === false || empty($currency)) {
     exit;
 }
 
-switch ($currency) {
-    case "USD":
-        $result = number_format($money * 0.1876172607879925, 2, ",", ".");
-        break;
-        
-    case "EUR":
-        $result = number_format($money * 0.1594896331738437, 2, ",", ".");
-        break;
-    
-    case "JPY":
-        $result = number_format($money * 27.777, 2, ",", ".");
-        break;
-        
-    case "CAD":
-        $result = number_format($money * 0.2617801047120419, 2, ",", ".");
-        break;
-        
-    case "CHF":
-        $result = number_format($money * 0.15, 2, ",", ".");
-        break;
-        
-    case "GBP":
-        $result = number_format($money * 0.139, 2, ",", ".");
-        break;
-        
-    case "AUD":
-        $result = number_format($money * 0.284, 2, ",", ".");
-        break;
-        
-    default:
-        $result = "Moeda inválida.";
-        break;
+// Função que calcula a conversão e retorna o resultado formatado
+function converterMoeda($money, $currency) {
+    switch ($currency) {
+        case "USD":
+            return number_format($money * 0.1876172607879925, 2, ",", ".");
+        case "EUR":
+            return number_format($money * 0.1594896331738437, 2, ",", ".");
+        case "JPY":
+            return number_format($money * 27.777, 2, ",", ".");
+        case "CAD":
+            return number_format($money * 0.2617801047120419, 2, ",", ".");
+        case "CHF":
+            return number_format($money * 0.15, 2, ",", ".");
+        case "GBP":
+            return number_format($money * 0.139, 2, ",", ".");
+        case "AUD":
+            return number_format($money * 0.284, 2, ",", ".");
+        default:
+            return "Moeda inválida.";
+    }
 }
+
+// Chama a função e armazena o resultado
+$result = converterMoeda($money, $currency);
 ?>
 
 <!DOCTYPE html>
