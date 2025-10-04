@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Página inicial de conversão de moeda</title>
+  <link rel="stylesheet" href="./pages_css/smt.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <form action="" method="get">
+    <h1>Conversor de Moeda</h1>
+
+    <label for="money">Valor em Reais (BRL):</label>
+    <input type="text" id="money" name="money" required />
+
+    <label for="currency">Converter para:</label>
+    <select id="currency" name="currency" required> 
+      <option value="USD">Dólar Americano (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="JPY">Iene Japonês (JPY)</option>
+      <option value="CAD">Dólar Canadense (CAD)</option>
+      <option value="CHF">Franco Suíço (CHF)</option>
+      <option value="GBP">Libra Esterlina (GBP)</option>
+      <option value="AUD">Dólar Australiano (AUD)</option>
+    </select>
+
+    <button type="submit">Converter</button>
+  </form>
+
+  <script>
+    const input = document.getElementById("money");
+
+    input.addEventListener("input", () => {
+      let value = input.value;
+
+      // Remove anything that is not a digit
+      value = value.replace(/\D/g, "");
+
+      // Avoid NaN
+      let number = parseFloat(value) / 100 || 0;
+
+      // Format to BRL
+      input.value = number.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+    });
+
+    // Remove formatting before submit
+    document.querySelector("form").addEventListener("submit", function (e) {
+      const raw = input.value.replace(/\D/g, "");
+      input.value = parseFloat(raw) / 100;
+    });
+  </script>
+</body>
+</html>
